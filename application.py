@@ -8,23 +8,23 @@ application = Flask(__name__)
 def test_page():
     return "This is a test page!"
 
-@application.route('/api/webhook', methods=['POST'])
+@application.route('/webhook', methods=['POST'])
 def webhook():
     data = request.json
-    form_data = data['form_response']
-    
-    # Populate Word document template
-    doc = Document('model_earth_offer_letter_teamplate.docx')
-    for key, value in form_data.items():
-        for paragraph in doc.paragraphs:
-            if key in paragraph.text:
-                paragraph.text = paragraph.text.replace(f'{{{{ {key} }}}}', value)
+    doc = Document()
+    doc.add_heading('Form Response', level=1)
 
-    # Save the populated document
-    doc_path = 'populated_document.docx'
+    # Extracting answers
+    for question_id, answer_data in data['answers'].items():
+        question_answers = [answer['value'] for answer in answer_data['textAnswers']['answers']]
+        doc.add_paragraph(f"Question ID {question_id}: {', '.join(question_answers)}")
+
+    doc_path = os.path.join('generated_docs', 'FormData.docx')
+    if not os.path.exists('generated_docs'):
+        os.makedirs('generated_docs')
     doc.save(doc_path)
-    
-    return jsonify({"message": "Document created successfully", "documentPath": doc_path})
+
+    return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
 if __name__ == '__main__':
-    application.run(debug=True, host='0.0.0.0', port=8888)
+    application.run(debug=True, host='127.0.0.1', port=8000)
