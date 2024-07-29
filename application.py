@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from docx import Document
 import os
 import re
+from docx.shared import Pt
 
 application = Flask(__name__)
 
@@ -32,13 +33,15 @@ def webhook():
     # replace placeholders
     pattern = re.compile(r'#\w+#')
     for paragraph in doc.paragraphs:
-        for match in re.findall(pattern, paragraph.text):
-            if match in placeholders:
-                # check optional fields in the form
+        for run in paragraph.runs:
+            print(f'run: {run.text}')
+            if run.text in placeholders:
                 to_replace = ''
-                if placeholders[match] in answers:
-                    to_replace = answers[placeholders[match]][0]
-                paragraph.text = paragraph.text.replace(match, to_replace)
+                if placeholders[run.text] in answers:
+                    to_replace = answers[placeholders[run.text]][0]
+                run.text = re.sub(pattern, to_replace, run.text)
+                run.font.name = 'Calibri'
+                run.font.size = Pt(11)
   
     doc_path = os.path.join('generated_docs', f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx")
     if not os.path.exists('generated_docs'):
