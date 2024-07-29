@@ -1,0 +1,6 @@
+/venv/
+.DS_Store
+/generated_docs/
+/test_data/
+.git
+.gitignore

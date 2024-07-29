@@ -4,7 +4,7 @@ import os
 import re
 from docx.shared import Pt
 
-application = Flask(__name__)
+app = Flask(__name__)
 
 placeholders={
     '#startDate#': '26b40600',
@@ -20,7 +20,11 @@ placeholders={
     '#phone#': '086a67d6' #optional
 }
 
-@application.route('/signup', methods=['POST'])
+@app.route("/")
+def main():
+    return "You arrievd Model.Earth Webhook test page"
+
+@app.route('/signup', methods=['POST'])
 def webhook():
     data = request.json
     doc = Document('offer_letter_template.docx')
@@ -51,4 +55,4 @@ def webhook():
     return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
 if __name__ == '__main__':
-    application.run(debug=True, host='127.0.0.1', port=8000)
+    app.run(debug=True, host='127.0.0.1', port=8080)
