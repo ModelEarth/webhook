@@ -10,3 +10,4 @@ python-docx==1.1.2
 typing_extensions==4.12.2
 Werkzeug==3.0.3
 zipp==3.19.2
+Flask-Mail==0.10.0

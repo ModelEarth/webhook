@@ -3,8 +3,12 @@ from docx import Document
 import os
 import re
 from docx.shared import Pt
-
+from flask_mail import Mail, Message
 app = Flask(__name__)
+
+app.config.from_pyfile('settings.py')
+
+mail = Mail(app)
 
 placeholders={
     '#startDate#': '26b40600',
@@ -38,7 +42,6 @@ def webhook():
     pattern = re.compile(r'#\w+#')
     for paragraph in doc.paragraphs:
         for run in paragraph.runs:
-            print(f'run: {run.text}')
             if run.text in placeholders:
                 to_replace = ''
                 if placeholders[run.text] in answers:
@@ -47,12 +50,25 @@ def webhook():
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    doc_path = os.path.join('generated_docs', f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx")
-    if not os.path.exists('generated_docs'):
-        os.makedirs('generated_docs')
+    doc_path = os.path.join('/tmp', f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx")
+
     doc.save(doc_path)
+
+    msg = Message(
+        subject="Test Hello",
+        recipients=['to@example.com'],
+    )
+    msg.body = "this is a test email"
+
+    with app.open_resource(doc_path) as f:
+        msg.attach(
+            doc_path, 
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+            f.read()
+        )
+    mail.send(msg)
 
     return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=8080)
+    app.run(debug=True, host='127.0.0.1', port=8000)
