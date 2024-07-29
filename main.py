@@ -47,9 +47,7 @@ def webhook():
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    doc_path = os.path.join('generated_docs', f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx")
-    if not os.path.exists('generated_docs'):
-        os.makedirs('generated_docs')
+    doc_path = os.path.join('/tmp', f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx")
     doc.save(doc_path)
 
     return jsonify({'status': 'success', 'documentPath': doc_path}), 200
