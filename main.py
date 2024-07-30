@@ -50,25 +50,30 @@ def webhook():
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    doc_path = os.path.join('/tmp', f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx")
-
+    file_name = f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx"
+    doc_path = os.path.join('/tmp', file_name)
     doc.save(doc_path)
 
+    try:
+        send_email(file_name, doc_path)
+    except Exception:
+        return jsonify({'status': 'failure', 'documentPath': doc_path}), 500
+    else:
+        return jsonify({'status': 'success', 'documentPath': doc_path}), 200
+
+def send_email(file_name, doc_path):
     msg = Message(
         subject="Test Hello",
         recipients=['to@example.com'],
     )
     msg.body = "this is a test email"
-
     with app.open_resource(doc_path) as f:
         msg.attach(
-            doc_path, 
+            file_name, 
             'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
             f.read()
         )
-    mail.send(msg)
-
-    return jsonify({'status': 'success', 'documentPath': doc_path}), 200
+        mail.send(msg)
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=8000)
