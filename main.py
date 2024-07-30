@@ -65,6 +65,7 @@ def send_email(file_name, doc_path):
     msg = Message(
         subject="Test Hello",
         recipients=['to@example.com'],
+        cc=['loren@dreamstudio.com']
     )
     msg.body = "this is a test email"
     with app.open_resource(doc_path) as f:
