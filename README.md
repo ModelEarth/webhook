@@ -2,6 +2,14 @@
 
 If you want to do tests, please uncomment the ENV:TEST section in `settings.py`. Please do not touch prod if you are unsure.
 
+## Create a Private Copy of Your Own
+1. Create a private repository on GitHub
+2. Clone your private repository to your local machine `git clone [YOUR_PRIVATE_REPO_GIT]`
+3. `cd [YOUR_PRIVATE_REPO]`
+4. Add the original webhook repo as a remote: `git remote add upstream https://github.com/ModelEarth/webhook.git`
+5. Fetch and merge changes from the original repo: `git fetch upstream` \ `git merge upstream/main`
+6. Push changes to Your Private Repo: `git push origin main`
+   
 ## Local Dev Setup
 1. Activate virtual env for Python: \
     `python3 -m venv venv`\
