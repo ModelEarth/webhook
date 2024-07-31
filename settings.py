@@ -6,7 +6,7 @@ PROJECT_ID='rock-objective-431022-a3'
 MAIL_USERNAME = '2f02ebc7b1c93e'
 MAIL_PORT = '2525' 
 MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
-MAIL_DEFAULT_SENDER = ('from@example.com')
+MAIL_DEFAULT_SENDER = ('loren@dreamstudio.com')
 SECRET_ID = 'mailtrap_password_test'
 ########################################
 

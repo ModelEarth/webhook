@@ -45,31 +45,35 @@ def webhook():
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    file_name = f"{response['0']['answer'][0]}_Offer_Letter.docx"
+    name = response['0']['answer'][0]
+    file_name = f"{name}_Offer_Letter.docx"
     doc_path = os.path.join('/tmp', file_name)
     doc.save(doc_path)
 
     try:
-        send_email(file_name, doc_path)
+        send_email(file_name, doc_path, name, response['13']['answer'][0])
     except Exception:
         return jsonify({'status': 'failure', 'documentPath': doc_path}), 500
     else:
         return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
-def send_email(file_name, doc_path):
-    msg = Message(
-        subject="Test Hello",
-        recipients=['to@example.com'],
-        cc=['loren@dreamstudio.com']
-    )
-    msg.body = "this is a test email"
-    with app.open_resource(doc_path) as f:
-        msg.attach(
-            file_name, 
-            'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            f.read()
+def send_email(file_name, doc_path, name, email):
+    with app.open_resource('outbound/new-member.txt') as tmp_body:
+        msg_body = tmp_body.read().decode('utf-8')
+        msg_body = msg_body.replace('[FirstName]', name.split()[0])
+
+        msg = Message(
+            subject="Welcome to our model.earth Team!",
+            recipients=[email]
         )
-        mail.send(msg)
+        msg.body = msg_body
+        with app.open_resource(doc_path) as f:
+            msg.attach(
+                file_name, 
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                f.read()
+            )
+            mail.send(msg)
 
 if __name__ == '__main__':
     app.run(debug=True, host='127.0.0.1', port=8000)
