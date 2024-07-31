@@ -1,12 +1,24 @@
 from google.cloud import secretmanager
 
-MAIL_USERNAME = 'f15ffc0a8d06b2'
-PROJECT_ID='upheld-chalice-430519-n5'
-MAIL_PORT = '2525'
+PROJECT_ID='rock-objective-431022-a3'
+
+############ ENV:TEST ##################
+MAIL_USERNAME = '2f02ebc7b1c93e'
+MAIL_PORT = '2525' 
 MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
+MAIL_DEFAULT_SENDER = ('from@example.com')
+SECRET_ID = 'mailtrap_password_test'
+########################################
+
+############ ENV:PROD ##################
+# SECRET_ID = 'mailtrap_password_prod'
+# MAIL_SERVER = 'live.smtp.mailtrap.io'
+# MAIL_PORT = '587' 
+# MAIL_USERNAME = 'api'
+########################################
+
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
-MAIL_DEFAULT_SENDER = ('from@example.com')
 
 def get_secret(secret_id: str, version_id="latest"):
     client = secretmanager.SecretManagerServiceClient()
@@ -15,4 +27,4 @@ def get_secret(secret_id: str, version_id="latest"):
     response = client.access_secret_version(name=name) 
     return response.payload.data.decode('UTF-8')
 
-MAIL_PASSWORD = get_secret('mailtrap_password')
+MAIL_PASSWORD = get_secret(SECRET_ID)
