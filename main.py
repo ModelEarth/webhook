@@ -11,17 +11,17 @@ app.config.from_pyfile('settings.py')
 mail = Mail(app)
 
 placeholders={
-    '#startDate#': '26b40600',
-    '#schoolDegree#': '11c2cd54', #optional
-    '#degreeDate#': '0b03fd30', #optional
-    '#name#': '6a2f8ab5',
-    '#optDepartment#': '01bcc04b', #optional
-    '#optContact#': '3ab50c1d', #optional
-    '#workingHours#': '0c8671f9',
-    '#github#': '51a6d3df',
-    '#email#': '61c73e81',
-    '#endDate#': '31e5f166', #optional
-    '#phone#': '086a67d6' #optional
+    '#name#': '0',
+    '#schoolDegree#': '4', #optional
+    '#degreeDate#': '5', #optional
+    '#optDepartment#': '6', #optional
+    '#optContact#': '7', #optional
+    '#workingHours#': '8',
+    '#github#': '11',
+    '#phone#': '12', #optional
+    '#email#': '13',
+    '#startDate#': '14',
+    '#endDate#': '15', #optional
 }
 
 @app.route("/")
@@ -30,27 +30,22 @@ def main():
 
 @app.route('/signup', methods=['POST'])
 def webhook():
-    data = request.json
+    response = request.json
     doc = Document('offer_letter_template.docx')
-
-    # extract answers
-    answers = {}
-    for question_id, answer_data in data['answers'].items():
-        answers[question_id] = [answer['value'] for answer in answer_data['textAnswers']['answers']]
-
+    
     # replace placeholders
     pattern = re.compile(r'#\w+#')
     for paragraph in doc.paragraphs:
         for run in paragraph.runs:
             if run.text in placeholders:
                 to_replace = ''
-                if placeholders[run.text] in answers:
-                    to_replace = answers[placeholders[run.text]][0]
+                if placeholders[run.text] in response:
+                    to_replace = response[placeholders[run.text]]['answer'][0]
                 run.text = re.sub(pattern, to_replace, run.text)
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    file_name = f"{answers['6a2f8ab5'][0]}_Offer_Letter.docx"
+    file_name = f"{response['0']['answer'][0]}_Offer_Letter.docx"
     doc_path = os.path.join('/tmp', file_name)
     doc.save(doc_path)
 
