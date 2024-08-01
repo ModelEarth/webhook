@@ -31,8 +31,10 @@ def main():
 @app.route('/signup', methods=['POST'])
 def webhook():
     response = request.json
-    doc = Document('offer_letter_template.docx')
-    
+    doc = Document('files/offer-letter-template.docx')
+    first_name = ''
+    full_name = ''
+
     # replace placeholders
     pattern = re.compile(r'#\w+#')
     for paragraph in doc.paragraphs:
@@ -41,26 +43,28 @@ def webhook():
                 to_replace = ''
                 if placeholders[run.text] in response:
                     to_replace = response[placeholders[run.text]]['answer'][0]
+                    if run.text == '#name#':
+                        first_name, full_name = to_camel_case(response['0']['answer'][0])
+                        to_replace = ' '.join(full_name)
                 run.text = re.sub(pattern, to_replace, run.text)
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    name = response['0']['answer'][0]
-    file_name = f"{name}_Offer_Letter.docx"
+    file_name = f"{''.join(full_name)}-Offer-Letter.docx"
     doc_path = os.path.join('/tmp', file_name)
     doc.save(doc_path)
 
     try:
-        send_email(file_name, doc_path, name, response['13']['answer'][0])
+        send_email(file_name, doc_path, first_name, response['13']['answer'][0])
     except Exception:
         return jsonify({'status': 'failure', 'documentPath': doc_path}), 500
     else:
         return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
-def send_email(file_name, doc_path, name, email):
+def send_email(file_name: str, doc_path: str, first_name: str, email: str) -> None:
     with app.open_resource('outbound/new-member.txt') as tmp_body:
         msg_body = tmp_body.read().decode('utf-8')
-        msg_body = msg_body.replace('[FirstName]', name.split()[0])
+        msg_body = msg_body.replace('[FirstName]', first_name)
 
         msg = Message(
             subject="Welcome to our model.earth Team!",
@@ -75,5 +79,10 @@ def send_email(file_name, doc_path, name, email):
             )
             mail.send(msg)
 
+def to_camel_case(name: str) -> list[str, list[str]]:
+    parts = name.split()
+    camel_case_parts = [part.capitalize() for part in parts]
+    return camel_case_parts[0], camel_case_parts
+
 if __name__ == '__main__':
-    app.run(debug=True, host='127.0.0.1', port=8000)
+    app.run(debug=True, host='127.0.0.1', port=8080)
