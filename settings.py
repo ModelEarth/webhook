@@ -3,20 +3,20 @@ from google.cloud import secretmanager
 PROJECT_ID='rock-objective-431022-a3'
 
 ############ ENV:TEST ##################
-MAIL_USERNAME = '2f02ebc7b1c93e'
-MAIL_PORT = '2525' 
-MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
-MAIL_DEFAULT_SENDER = ('loren@dreamstudio.com')
-SECRET_ID = 'mailtrap_password_test'
+# MAIL_USERNAME = '2f02ebc7b1c93e'
+# MAIL_PORT = '2525' 
+# MAIL_SERVER = 'sandbox.smtp.mailtrap.io'
+# SECRET_ID = 'mailtrap_password_test'
 ########################################
 
 ############ ENV:PROD ##################
-# SECRET_ID = 'mailtrap_password_prod'
-# MAIL_SERVER = 'live.smtp.mailtrap.io'
-# MAIL_PORT = '587' 
-# MAIL_USERNAME = 'api'
+SECRET_ID = 'mailtrap_password_prod'
+MAIL_SERVER = 'live.smtp.mailtrap.io'
+MAIL_PORT = '587' 
+MAIL_USERNAME = 'api'
 ########################################
 
+MAIL_DEFAULT_SENDER = 'loren@model.earth'
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
 

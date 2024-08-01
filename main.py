@@ -56,8 +56,8 @@ def webhook():
 
     try:
         send_email(file_name, doc_path, first_name, response['13']['answer'][0])
-    except Exception:
-        return jsonify({'status': 'failure', 'documentPath': doc_path}), 500
+    except Exception as e:
+        return jsonify({'Error': str(e)}), 500
     else:
         return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
@@ -68,7 +68,8 @@ def send_email(file_name: str, doc_path: str, first_name: str, email: str) -> No
 
         msg = Message(
             subject="Welcome to our model.earth Team!",
-            recipients=[email]
+            recipients=[email],
+            cc=[app.config['MAIL_DEFAULT_SENDER']]
         )
         msg.body = msg_body
         with app.open_resource(doc_path) as f:
