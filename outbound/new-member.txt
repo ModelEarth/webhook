@@ -1,33 +1,8 @@
-Hi [FirstName], welcome to our DreamStudio model.earth data science team!
+Thanks for registering in our Model.earth member form.
 
-We meet Wednesdays at 11 AM EDT and 11 PM EDT at night on Sundays.
-Our Supabase SQL team also meets at 6 PM EDT on Fridays.
+Here's a welcome letter with info added from your registration.
 
-Our Google Meet link is always the same. The times are here too:
-https://model.earth/io/coders
+Please review and send to me to sign.
 
-Please complete the "New Member Signup" link here if you haven't done so already:
-https://model.earth/community/members
-
-Here are some areas to consider including in your Member Signup:
-
-Javascript with eCharts visualizations, D3 chart javascript, Leaflet map colors, International Exiobase trade data for countries, Discord API pull, Python pipelines, ML Forecasting, API Feed Player React, LLMs with Python, AI Image Generation Python, Video generation Python, Supabase, DuckDB, Push a file to Github from OpenWebUI
-
-Here's our active project list:
-https://model.earth/projects
-
-As you look through the projects, you'll see TO DOs.
-Let me know if you'd like to be added to a specific project.
-
-Commands for pulling down our repos are here:
-https://model.earth/localsite/start/steps
-
-If you're an OPT student, here's a welcome letter to return for me to sign.
-
-I'm looking forward to working with you!
-
-Loren Heyns
+Loren Heyns, Dreamstudio
 loren@dreamstudio.com
-
-
-Welcome to our model.earth Team! ~ 
