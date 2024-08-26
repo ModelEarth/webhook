@@ -1,6 +1,8 @@
-# How to Set up 
+# Our Webhook Setup 
 
-If you want to do tests, please uncomment the ENV:TEST section in `settings.py`. Please do not touch prod if you are unsure.
+Our webhook populates a Word Doc from a [Google Form](https://model.earth/community/members) and emails the document to our new members.
+
+If you're testing, please uncomment the ENV:TEST section in `settings.py`.
 
 ## Create a Private Copy of Your Own
 
