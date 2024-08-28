@@ -4,22 +4,25 @@ Our webhook populates a Word Doc from a [Google Form](https://model.earth/commun
 
 If you're testing, please uncomment the ENV:TEST section in `settings.py`.
 
-## Create a Private Copy of Your Own
+## Getting Started
 
-1. Create a private repository on GitHub
-2. Clone your private repository to your local machine `git clone [YOUR_PRIVATE_REPO_GIT]`
-3. `cd [YOUR_PRIVATE_REPO]`
+1. Optionally create a private repository on GitHub, or a secure environment variable
+2. Clone your repo to your local machine `git clone [YOUR_PRIVATE_REPO_GIT]`
+3. `cd [YOUR_REPO]`
 4. Add the original webhook repo as a remote: `git remote add upstream https://github.com/ModelEarth/webhook.git`
 5. Fetch and merge changes from the original repo: `git fetch upstream` \ `git merge upstream/main`
-6. Push changes to Your Private Repo: `git push origin main`
+6. Push changes to Your Repo: `git push origin main`
 
 ## Local Dev Setup
 
-1. Activate virtual env for Python: \
-    `python3 -m venv venv`\
-    `source venv/bin/activate`
-2. Install the packages \
-   `pip install -r requirements.txt`
+1. Activate virtual env for Python:
+
+        python3 -m venv venv
+        source venv/bin/activate
+
+2. Install the packages
+
+        pip install -r requirements.txt
 
 ### Local Form Data Tests Setup
 
