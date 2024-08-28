@@ -17,7 +17,7 @@ If you're testing, please uncomment the ENV:TEST section in `settings.py`.
 
 1. Activate virtual env for Python:
 
-        python3 -m venv venv
+        python3.11 -m venv env
         source venv/bin/activate
 
 2. Install the packages
@@ -46,3 +46,11 @@ The scope should be set to `https://www.googleapis.com/auth/forms.responses.read
 2. Follow the website's guide to create the account and set up your domain
 3. One common issue if CNAME records cannot be verified. 
     [Source](https://developers.cloudflare.com/dns/manage-dns-records/troubleshooting/cname-domain-verification/) : To get verified, turn off proxy for the 4 MailTrap CNAME records. Retain "Flatten CNAME at apex", the default and only option in Cloudflare.
+
+
+## Google Form
+
+    Upper right 3-dots > Script editor
+
+    Copy function
+    Add Trigger
