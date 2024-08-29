@@ -50,7 +50,7 @@ The scope should be set to `https://www.googleapis.com/auth/forms.responses.read
 
 ## Google Form
 
-    Upper right 3-dots > Script editor
+Copy the function from existing Google Form by choosing "Script editor" from the 3-dots menu in upper right.
 
-    Copy function
-    Add Trigger
+Also add the same config under "Add Trigger".
+
