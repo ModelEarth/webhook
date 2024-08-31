@@ -2,7 +2,7 @@
 
 # Webhook
 
-[Our membership page](/community/members) welcome letter uses a [Flask webhook app](https://github.com/modelEarth/webhook) that runs in Google App Engine which merges member fields from our Google Form into our Word Doc welcome template. The merged welcome letter Word Doc is sent to new members using MailTrap's free outbound email plan, which sends up to 200 emails per day.  <a href="https://github.com/modelearth/webhook/">GitHub</a>
+[Our membership page](/community/members) welcome letter uses a [Flask webhook app](https://github.com/modelEarth/webhook) that runs in Google App Engine. The webhook merges member fields from our Google Form into our Word Doc welcome template. The merged welcome letter Word Doc is sent to new members using MailTrap's free outbound email plan, which sends up to 200 emails per day.  <a href="https://github.com/modelearth/webhook/">GitHub</a>
 
 Our SMTP secrets reside in Google Cloud Secret Manager. We securely store the secrets for the email service and import them into our Flask application through Cloud Computing Services (GCP).
 

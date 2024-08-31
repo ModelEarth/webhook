@@ -31,7 +31,7 @@ def main():
 @app.route('/signup', methods=['POST'])
 def webhook():
     response = request.json
-    doc = Document('files/offer-letter-template.docx')
+    doc = Document('files/YourName-ModelEarth-WelcomeLetter.docx')
     first_name = ''
     full_name = ''
 
@@ -50,7 +50,7 @@ def webhook():
                 run.font.name = 'Calibri'
                 run.font.size = Pt(11)
   
-    file_name = f"{''.join(full_name)}-Offer-Letter.docx"
+    file_name = f"{''.join(full_name)}-ModelEarth-WelcomeLetter.docx"
     doc_path = os.path.join('/tmp', file_name)
     doc.save(doc_path)
 
