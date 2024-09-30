@@ -27,7 +27,8 @@ If you're testing, please uncomment the ENV:TEST section in `settings.py`.
 
         python3.11 -m venv env
         source venv/bin/activate
-
+        nvm use 3.11
+        
 2. Install the packages
 
         pip install -r requirements.txt
