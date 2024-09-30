@@ -20,6 +20,7 @@ MAIL_DEFAULT_SENDER = 'loren@model.earth'
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
 
+# Get the mailtrap password using the SECRET_ID in Google Cloud
 def get_secret(secret_id: str, version_id="latest"):
     client = secretmanager.SecretManagerServiceClient()
     name = f"projects/{PROJECT_ID}/secrets/{secret_id}/versions/{version_id}"

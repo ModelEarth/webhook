@@ -28,7 +28,7 @@ If you're testing, please uncomment the ENV:TEST section in `settings.py`.
         python3.11 -m venv env
         source venv/bin/activate # On Windows .\env\Scripts\activate
 
-[pyenv notes](/io/coders/python/)
+[pyenv notes](https://model./io/coders/python/)
 
 2. Install the packages
 
@@ -40,7 +40,7 @@ In order to do some local tests on Postman, please follow [this guide](https://b
 
 The scope should be set to `https://www.googleapis.com/auth/forms.responses.readonly  https://www.googleapis.com/auth/forms.body.readonly` with a newline as the separator.
 
-## How to Deploy to Google App Engine
+## How to Deploy GitHub Repo to Google App Engine
 
 1. Follow [Creating Your Google Cloud Project](https://cloud.google.com/appengine/docs/standard/python3/building-app/creating-gcp-project)
 2. Follow [Deploying Your Web Service](https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service)
