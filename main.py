@@ -26,7 +26,7 @@ placeholders={
 
 @app.route("/")
 def main():
-    return "You arrievd Model.Earth Webhook test page"
+    return "You've arrived at the Model.Earth Webhook test page"
 
 @app.route('/signup', methods=['POST'])
 def webhook():

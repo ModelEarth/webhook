@@ -23,12 +23,12 @@ If you're testing, please uncomment the ENV:TEST section in `settings.py`.
 
 ## Local Dev Setup
 
+About changing Python version: [pyenv notes](https://model./io/coders/python/)
+
 1. Activate virtual env for Python:
 
         python3.11 -m venv env
         source venv/bin/activate # On Windows .\env\Scripts\activate
-
-[pyenv notes](https://model./io/coders/python/)
 
 2. Install the packages
 
