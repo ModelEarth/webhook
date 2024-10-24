@@ -19,6 +19,8 @@ Probably from running:
 pyenv local 3.11
 
         python3.11 -m venv env
+
+Our notes on changing your Python version using [pyenv](https://model.earth/io/coders/python/)
 -->
 
 1. Run in the webhook folder to activate a virtual env for Python:
@@ -30,24 +32,62 @@ pyenv local 3.11
 
         pip install -r requirements.txt
 
-Our notes on changing your Python version using [pyenv](https://model.earth/io/coders/python/)
+<!--
+There's no package.json for this
+        npm ci
+npm ci (clean install) is similar to npm install, but doesn't modify the package-lock.json.  
+Alternatively, run: `pip install -r requirements.txt`
+-->
 
+If you receive the error `No module named 'imp'` you'll need to replace the google-cloud-cli folder in your user root by deleteing and replacing with the latest [Google Cloud sdk folder](https://cloud.google.com/sdk/docs/install).
 
-### Local Form Data Tests Setup
+## How to Deploy GitHub Repo to Google App Engine
+
+You can probably skip to step 6 to deploy a change.
+
+1. Follow [Creating Your Google Cloud Project](https://cloud.google.com/appengine/docs/standard/python3/building-app/creating-gcp-project)
+2. Follow [Deploying Your Web Service](https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service)
+
+<!-- gcloud app deploy -->
+
+3. In the terminal, run `gcloud auth application-default login` to authenticate Google CLI access.
+4. Run `gcloud config set project [PROJECT_ID]`.
+5. Grant Secret Manager Access to App Engine Service Account.  
+Checkout this [guide](https://cloud.google.com/secret-manager/docs/access-control). This is used to access the SMTP password stored in Google Cloud Secret Manager.
+
+6. Run `gcloud init` and then `gcloud app deploy`
+
+<!--
+In cmd prompt, created configuration name:
+webhook-from-member-form
+l h @ g mail
+
+Ignore: Error creating a default .boto configuration file. Please run [gsutil config -n] if you would like to create this file. Because:
+"In most cases, users who want to use a CLI to work with Cloud Storage should not use the gsutil tool. Instead, you should work with the Google Cloud CLI and use gcloud storage commands."
+Source: https://cloud.google.com/storage/docs/gsutil_install
+
+Why does `gcloud app deploy` upload 2031 files?
+
+You can stream logs from the command line by running:
+  $ gcloud app logs tail -s default
+
+To terminate log streaming:
+Ctrl + C
+
+To view your application in the web browser run:
+  $ gcloud app browse
+
+You'll see:
+You've arrived at the Model.Earth Webhook test page
+-->
+
+7. The app should be deployed. Run `gcloud app browse` to see the landing test page.
+
+## Local Form Data Tests - Postman Setup
 
 To run API tests using Postman, follow [this guide](https://blog.postman.com/how-to-access-google-apis-using-oauth-in-postman/) to set up OAuth 2.0 in Postman for Google Form APIs.
 
 The scope should be set to `https://www.googleapis.com/auth/forms.responses.readonly  https://www.googleapis.com/auth/forms.body.readonly` with a newline as the separator.
-
-## How to Deploy GitHub Repo to Google App Engine
-
-1. Follow [Creating Your Google Cloud Project](https://cloud.google.com/appengine/docs/standard/python3/building-app/creating-gcp-project)
-2. Follow [Deploying Your Web Service](https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service)
-3. In the terminal, run `gcloud auth application-default login` to authenticate Google CLI access.
-4. Run `gcloud config set project [PROJECT_ID]`.
-5. Grant Secret Manager Access to App Engine Service Account. Checkout this [guide](https://cloud.google.com/secret-manager/docs/access-control). This is used to access the SMTP password stored in Google Cloud Secret Manager.
-6. Run `gcloud init` and then `gcloud app deploy`
-7. The app should be deployed. Run `gcloud app browse` to see the landing test page.
 
 ## How to Set Up SMTP Service
 
