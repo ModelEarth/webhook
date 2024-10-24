@@ -39,7 +39,7 @@ npm ci (clean install) is similar to npm install, but doesn't modify the package
 Alternatively, run: `pip install -r requirements.txt`
 -->
 
-If you receive the error `No module named 'imp'` you'll need to replace the google-cloud-cli folder in your user root by deleteing and replacing with the latest [Google Cloud sdk folder](https://cloud.google.com/sdk/docs/install).
+If you receive the error `No module named 'imp'` you'll need to replace the older (python 3.11) google-cloud-cli folder in your user root by deleteing and replacing it with the latest [Google Cloud sdk folder](https://cloud.google.com/sdk/docs/install).
 
 ## How to Deploy GitHub Repo to Google App Engine
 
