@@ -13,7 +13,7 @@ To test, in `settings.py`, uncomment the ENV:TEST section and comment out ENV:PR
 
 ## Local Dev Setup
 
-1. Run in the webhook foler to activate a virtual env for Python:
+1. Run in the webhook folder to activate a virtual env for Python:
 
         python3.11 -m venv env
         source venv/bin/activate    # On Windows run: .\env\Scripts\activate
