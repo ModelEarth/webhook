@@ -2,15 +2,13 @@
 
 # Webhook
 
-[Our membership page](/community/members) welcome letter uses a [Flask webhook app](https://github.com/modelEarth/webhook) that runs in Google App Engine. The webhook merges member fields from our Google Form into our Word Doc welcome template. The merged welcome letter Word Doc is sent to new members using MailTrap's free outbound email plan, which sends up to 200 emails per day.  <a href="https://github.com/modelearth/webhook/">GitHub</a>
+[Our membership page](/community/members) welcome letter uses a [Flask webhook app](https://github.com/modelEarth/webhook) that runs in Google App Engine. The webhook merges member fields from our [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScXSX0_myDcB4_Z32hpGC71PXVsMmgy_dyZPY0aPEWamyzV-w/viewform) into our Word Doc welcome template. The merged welcome letter Word Doc is sent to new members using MailTrap's free outbound email plan, which sends up to 200 emails per day.  <a href="https://github.com/modelearth/webhook/">GitHub</a>
 
 Our SMTP secrets reside in Google Cloud Secret Manager. We securely store the secrets for the email service and import them into our Flask application through Cloud Computing Services (GCP).
 
-For our Flask application's use of MailTrap outbound email, we added CNAME and TXT records to our registered domain in [Cloudflare](../../../localsite/start/cloudflare/). The&nbsp;setup requires turning off Proxy on the CNAME records.
+For our Flask app's use of MailTrap outbound email, we added CNAME and TXT records to our registered domain in [Cloudflare](../../../localsite/start/cloudflare/). The&nbsp;setup requires turning off Proxy on the CNAME records.
 
-Our webhook populates a Word Doc from a [Google Form](https://model.earth/community/members) and emails the document to our new members.
-
-If you're testing, please uncomment the ENV:TEST section in `settings.py`.
+To test, in `settings.py`, uncomment the ENV:TEST section and comment out ENV:PROD.
 
 ## Getting Started
 
@@ -60,7 +58,7 @@ The scope should be set to `https://www.googleapis.com/auth/forms.responses.read
 
 ## Google Form
 
-Copy the function from existing Google Form by choosing "Script editor" from the 3-dots menu in upper right.
+Copy the function from existing [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScXSX0_myDcB4_Z32hpGC71PXVsMmgy_dyZPY0aPEWamyzV-w/viewform) by choosing "Script editor" from the 3-dots menu in upper right.
 
 Also add the same config under "Add Trigger".
 
