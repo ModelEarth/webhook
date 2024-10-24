@@ -18,8 +18,8 @@ placeholders={
     '#optContact#': '7', #optional
     '#workingHours#': '8',
     '#github#': '11',
-    '#phone#': '12', #optional
-    '#email#': '13',
+    '#email#': '12',
+    '#phone#': '13', #optional
     '#startDate#': '14',
     '#endDate#': '15', #optional
 }
