@@ -110,5 +110,5 @@ The scope should be set to `https://www.googleapis.com/auth/forms.responses.read
 
 Copy the function from existing [Google Form](https://docs.google.com/forms/d/e/1FAIpQLScXSX0_myDcB4_Z32hpGC71PXVsMmgy_dyZPY0aPEWamyzV-w/viewform) by choosing "Script editor" from the 3-dots menu in upper right.
 
-Also add the same config under "Add Trigger".
+On the Triggers page (fourth icon on the left), click "Add Trigger" and for Function "onSubmit" set "From Form" event type "On form submit".  You can change "notify me immediately" to "notify me daily"
 

@@ -68,7 +68,7 @@ def send_email(file_name: str, doc_path: str, first_name: str, email: str) -> No
         msg_body = msg_body.replace('[FirstName]', first_name)
 
         msg = Message(
-            subject="Welcome to our model.earth Team!",
+            subject="Welcome to our model.earth team!",
             recipients=[email],
             cc=[app.config['MAIL_DEFAULT_SENDER']]
         )
