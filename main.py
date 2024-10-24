@@ -23,6 +23,7 @@ placeholders={
     '#startDate#': '14',
     '#endDate#': '15', #optional
 }
+# If numbers change above, also update send_email() from 12 below.
 
 @app.route("/")
 def main():
