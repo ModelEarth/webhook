@@ -10,31 +10,24 @@ For our Flask app's use of MailTrap outbound email, we added CNAME and TXT recor
 
 To test, in `settings.py`, uncomment the ENV:TEST section and comment out ENV:PROD.
 
-## Getting Started
-
-1. Optionally create a private repository on GitHub, or a secure environment variable
-2. Clone your repo to your local machine `git clone [YOUR_PRIVATE_REPO_GIT]`
-3. `cd [YOUR_REPO]`
-4. Add the original webhook repo as a remote: `git remote add upstream https://github.com/ModelEarth/webhook.git`
-5. Fetch and merge changes from the original repo: `git fetch upstream` \ `git merge upstream/main`
-6. Push changes to Your Repo: `git push origin main`
 
 ## Local Dev Setup
 
-About changing Python version: [pyenv notes](https://model./io/coders/python/)
-
-1. Activate virtual env for Python:
+1. Run in the webhook foler to activate a virtual env for Python:
 
         python3.11 -m venv env
-        source venv/bin/activate # On Windows .\env\Scripts\activate
+        source venv/bin/activate    # On Windows run: .\env\Scripts\activate
 
 2. Install the packages
 
         pip install -r requirements.txt
 
+Our notes on changing your Python version using [pyenv](https://model.earth/io/coders/python/)
+
+
 ### Local Form Data Tests Setup
 
-In order to do some local tests on Postman, please follow [this guide](https://blog.postman.com/how-to-access-google-apis-using-oauth-in-postman/) to set up OAuth 2.0 in Postman for Google Form APIs.
+To run API tests using Postman, follow [this guide](https://blog.postman.com/how-to-access-google-apis-using-oauth-in-postman/) to set up OAuth 2.0 in Postman for Google Form APIs.
 
 The scope should be set to `https://www.googleapis.com/auth/forms.responses.readonly  https://www.googleapis.com/auth/forms.body.readonly` with a newline as the separator.
 
@@ -55,6 +48,15 @@ The scope should be set to `https://www.googleapis.com/auth/forms.responses.read
 3. One common issue if CNAME records cannot be verified. 
     [Source](https://developers.cloudflare.com/dns/manage-dns-records/troubleshooting/cname-domain-verification/) : To get verified, turn off proxy for the 4 MailTrap CNAME records. Retain "Flatten CNAME at apex", the default and only option in Cloudflare.
 
+
+## To Create your Own Copy
+
+1. Optionally create a private repository on GitHub, or a secure environment variable
+2. Clone your repo to your local machine `git clone [YOUR_PRIVATE_REPO_GIT]`
+3. `cd [YOUR_REPO]`
+4. Add the original webhook repo as a remote: `git remote add upstream https://github.com/ModelEarth/webhook.git`
+5. Fetch and merge changes from the original repo: `git fetch upstream` \ `git merge upstream/main`
+6. Push changes to Your Repo: `git push origin main`
 
 ## Google Form
 
