@@ -43,7 +43,7 @@ If you receive the error `No module named 'imp'` you'll need to replace the olde
 
 ## How to Deploy GitHub Repo to Google App Engine
 
-You can probably skip to step 6 to deploy a change.
+**To deploy an update:** Skip to step 6
 
 1. Follow [Creating Your Google Cloud Project](https://cloud.google.com/appengine/docs/standard/python3/building-app/creating-gcp-project)
 2. Follow [Deploying Your Web Service](https://cloud.google.com/appengine/docs/standard/python3/building-app/deploying-web-service)
@@ -57,7 +57,9 @@ Checkout this [guide](https://cloud.google.com/secret-manager/docs/access-contro
 
 6. Run `gcloud init` and then `gcloud app deploy`
 
-Chose: 3. Switch to and re-initialize existing configuration: [webhook-from-member-form], Then 1. l.h, Then 7. rock-obj... And ignore .boto error.
+For a file update during step 6:
+Choose 3: Switch to and re-initialize existing configuration: [webhook-from-member-form]    
+Then 1: l.h, Then 7: rock-obj... And ignore .boto error.
 
 <!--
 In cmd prompt, created configuration name:
@@ -83,7 +85,7 @@ You'll see:
 You've arrived at the Model.Earth Webhook test page
 -->
 
-7. The app should be deployed. Run `gcloud app browse` to see the landing test page.
+The app should be deployed. Run `gcloud app browse` to see the landing test page, which is simply the text: You've arrived at our Model.Earth webhook test page.
 
 ## Local Form Data Tests - Postman Setup
 
