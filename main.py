@@ -12,6 +12,7 @@ mail = Mail(app)
 
 placeholders={
     '#name#': '0',
+    '#team#': '1',
     '#schoolDegree#': '4', #optional
     '#degreeDate#': '5', #optional
     '#optDepartment#': '6', #optional
@@ -21,9 +22,10 @@ placeholders={
     '#email#': '12',
     '#phone#': '13', #optional
     '#startDate#': '14',
-    '#endDate#': '15', #optional
+    '#endDate#': '15', #optional,
+    '#jobTitle#': '18'
 }
-# If numbers change above, also update send_email() from 12 below.
+# If numbers are added before 12 above, also update send_email() from 12 below.
 
 @app.route("/")
 def main():
