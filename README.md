@@ -57,9 +57,11 @@ Checkout this [guide](https://cloud.google.com/secret-manager/docs/access-contro
 
 6. Run `gcloud init` and choose options, then run `gcloud app deploy`
 
-Options selected for a file update during step above (3, 1, 7):  
-Choose 3: Switch to and re-initialize existing configuration: [webhook-from-member-form]    
-Then 1: l.h, Then 7: rock-obj... And ignore .boto error. Lastly run `gcloud app deploy`
+Options selected for a file update during step above (3 or 4, 1, 9 (this will change)):  
+Choose 3 or 4: Switch to and re-initialize existing configuration: [webhook-from-member-form]    
+Then 1: l.h, Then: rock-obj... And ignore .boto error.
+
+Lastly run `gcloud app deploy` followed by Y.
 
 <!--
 In cmd prompt, created configuration name:
