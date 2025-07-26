@@ -16,7 +16,7 @@ MAIL_PORT = '587'
 MAIL_USERNAME = 'api'
 ########################################
 
-MAIL_DEFAULT_SENDER = 'loren@model.earth'
+MAIL_DEFAULT_SENDER = 'loren@dreamstudio.com'
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
 
