@@ -16,7 +16,8 @@ MAIL_PORT = '587'
 MAIL_USERNAME = 'api'
 ########################################
 
-MAIL_DEFAULT_SENDER = 'loren@dreamstudio.com'
+# avoid using ds.c email - Sending from domain is not allowed, since probably not added initially.
+MAIL_DEFAULT_SENDER = 'loren@model.earth'
 MAIL_USE_TLS = True
 MAIL_USE_SSL = False
 
