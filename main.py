@@ -12,18 +12,25 @@ mail = Mail(app)
 
 placeholders={
     '#name#': '0',
-    '#team#': '1',
-    '#schoolDegree#': '4', #optional
-    '#degreeDate#': '5', #optional
-    '#optDepartment#': '6', #optional
-    '#optContact#': '7', #optional
-    '#workingHours#': '8',
-    '#github#': '11',
-    '#email#': '12',
-    '#phone#': '13', #optional
-    '#startDate#': '14',
-    '#endDate#': '15', #optional,
-    '#jobTitle#': '18'
+    '#handle#': '1',
+    '#team#': '2',
+    '#focus#': '3',
+    '#goal#': '4',
+    '#schoolDegree#': '5', #optional
+    '#degreeDate#': '6', #optional
+    '#optDepartment#': '7', #optional
+    '#optContact#': '8', #optional
+    '#workingHours#': '9',
+    '#location#': '10',
+    '#status#': '11',
+    '#github#': '12',
+    '#email#': '13',
+    '#phone#': '14', #optional
+    '#startDate#': '15',
+    '#endDate#': '16', #optional,
+    '#website#': '17', #optional,
+    '#note#': '18', #optional,
+    '#jobTitle#': '19'
 }
 # If numbers are added before 12 above, also update send_email() from 12 below.
 
