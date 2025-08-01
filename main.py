@@ -32,7 +32,7 @@ placeholders={
     '#note#': '18', #optional,
     '#jobTitle#': '19'
 }
-# If numbers are added before 12 above, also update send_email() from 12 below.
+# If numbers are added before 13 above, also update send_email() from 13 below.
 
 @app.route("/")
 def main():
@@ -65,7 +65,7 @@ def webhook():
     doc.save(doc_path)
 
     try:
-        send_email(file_name, doc_path, first_name, response['12']['answer'][0])
+        send_email(file_name, doc_path, first_name, response['13']['answer'][0])
     except Exception as e:
         return jsonify({'Error': str(e)}), 500
     else:
