@@ -66,6 +66,12 @@ Your Project rock-obj... (9)
 
 Lastly run `gcloud app deploy` followed by Y.
 
+
+### Occasionally you'll need to update the python version in app.yaml
+
+runtime: python311
+
+
 <!--
 In cmd prompt, created configuration name:
 webhook-from-member-form
