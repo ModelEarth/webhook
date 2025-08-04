@@ -50,10 +50,10 @@ def webhook():
 
     # replace placeholders in paragraphs
     def replace_in_paragraph(paragraph):
-        full_text = paragraph.text
+        has_changes = False
         
         for placeholder, key in placeholders.items():
-            if placeholder in full_text:
+            if placeholder in paragraph.text:
                 to_replace = ''
                 if placeholder == '#todaysDate#':
                     to_replace = todays_date
@@ -63,13 +63,22 @@ def webhook():
                         first_name, full_name = to_camel_case(response['0']['answer'][0])
                         to_replace = ' '.join(full_name)
                 
-                full_text = full_text.replace(placeholder, to_replace)
-        
-        if full_text != paragraph.text:
-            paragraph.clear()
-            run = paragraph.add_run(full_text)
-            run.font.name = 'Calibri'
-            run.font.size = Pt(11)
+                # Replace placeholder while preserving formatting
+                for run in paragraph.runs:
+                    if placeholder in run.text:
+                        # Store original formatting
+                        is_bold = run.bold
+                        font_name = run.font.name
+                        font_size = run.font.size
+                        
+                        # Replace text
+                        run.text = run.text.replace(placeholder, to_replace)
+                        
+                        # Restore formatting
+                        run.bold = is_bold
+                        run.font.name = font_name or 'Calibri'
+                        run.font.size = font_size or Pt(11)
+                        has_changes = True
     
     # Replace in document paragraphs
     for paragraph in doc.paragraphs:
