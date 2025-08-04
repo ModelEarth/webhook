@@ -48,12 +48,10 @@ def webhook():
     full_name = ''
     todays_date = datetime.datetime.now().strftime("%B %-d, %Y")
 
-    # replace placeholders
-    for paragraph in doc.paragraphs:
-        # Get the full paragraph text
+    # replace placeholders in paragraphs
+    def replace_in_paragraph(paragraph):
         full_text = paragraph.text
         
-        # Find all placeholders in the paragraph
         for placeholder, key in placeholders.items():
             if placeholder in full_text:
                 to_replace = ''
@@ -65,15 +63,24 @@ def webhook():
                         first_name, full_name = to_camel_case(response['0']['answer'][0])
                         to_replace = ' '.join(full_name)
                 
-                # Replace all occurrences in the paragraph
                 full_text = full_text.replace(placeholder, to_replace)
         
-        # Clear all runs and create a new one with the replaced text
         if full_text != paragraph.text:
             paragraph.clear()
             run = paragraph.add_run(full_text)
             run.font.name = 'Calibri'
             run.font.size = Pt(11)
+    
+    # Replace in document paragraphs
+    for paragraph in doc.paragraphs:
+        replace_in_paragraph(paragraph)
+    
+    # Replace in table cells
+    for table in doc.tables:
+        for row in table.rows:
+            for cell in row.cells:
+                for paragraph in cell.paragraphs:
+                    replace_in_paragraph(paragraph)
   
     file_name = f"{''.join(full_name)}-ModelEarth-WelcomeLetter.docx"
     doc_path = os.path.join('/tmp', file_name)
