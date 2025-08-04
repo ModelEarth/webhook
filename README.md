@@ -55,11 +55,14 @@ If you receive the error `No module named 'imp'` you'll need to replace the olde
 5. Grant Secret Manager Access to App Engine Service Account.  
 Checkout this [guide](https://cloud.google.com/secret-manager/docs/access-control). This is used to access the SMTP password stored in Google Cloud Secret Manager.
 
-6. Run `gcloud init` and choose options, then run `gcloud app deploy`
+6. Run `gcloud init` and choose options
 
-Options selected for a file update during step above (3 or 4, 1, 9 (this will change)):  
-Choose 3 or 4: Switch to and re-initialize existing configuration: [webhook-from-member-form]    
-Then 1: l.h, Then: rock-obj... And ignore .boto error.
+(numbers will change)): 
+Switch to and re-initialize existing configuration: [webhook-from-member-form] (4)
+Your email l.h (1) 
+Your Project rock-obj... (9)  
+  
+<!--And ignore .boto error.-->
 
 Lastly run `gcloud app deploy` followed by Y.
 
