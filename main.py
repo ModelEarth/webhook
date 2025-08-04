@@ -4,6 +4,7 @@ import os
 import re
 from docx.shared import Pt
 from flask_mail import Mail, Message
+import datetime
 app = Flask(__name__)
 
 app.config.from_pyfile('settings.py')
@@ -30,7 +31,8 @@ placeholders={
     '#endDate#': '16', #optional,
     '#website#': '17', #optional,
     '#note#': '18', #optional,
-    '#jobTitle#': '19'
+    '#jobTitle#': '19',
+    '#todaysDate#': 'todaysDate'
 }
 # If numbers are added before 13 above, also update send_email() from 13 below.
 
@@ -44,6 +46,7 @@ def webhook():
     doc = Document('files/YourName-ModelEarth-WelcomeLetter.docx')
     first_name = ''
     full_name = ''
+    todays_date = datetime.datetime.now().strftime("%B %-d, %Y")
 
     # replace placeholders
     pattern = re.compile(r'#\w+#')
@@ -51,7 +54,9 @@ def webhook():
         for run in paragraph.runs:
             if run.text in placeholders:
                 to_replace = ''
-                if placeholders[run.text] in response:
+                if run.text == '#todaysDate#':
+                    to_replace = todays_date
+                elif placeholders[run.text] in response:
                     to_replace = response[placeholders[run.text]]['answer'][0]
                     if run.text == '#name#':
                         first_name, full_name = to_camel_case(response['0']['answer'][0])
