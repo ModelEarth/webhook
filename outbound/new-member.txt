@@ -11,13 +11,10 @@ Check Discord for the latest TO DO posts, Github Issues and ClickUp.
 Here's our weekly meetup link:
 https://model.earth/io/coders
 
-
 Email loren@dreamstudio.com to log your progress.
 Please send a weekly PR or colab update to remain active.
 
-
-Thanks for jumping in, looking forward to having you on the team!
-
+Looking forward to having you on the team!
 
 Loren Heyns, Dreamstudio
 loren@dreamstudio.com
