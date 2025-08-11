@@ -1,6 +1,6 @@
 Thanks for registering in our Model.earth member form.
 
-Here's a welcome letter with info added from your registration.
+Here's a welcome/offer letter with info added from your registration.
 Email me a copy of the PDF once you save it with a date and add your signature.
 
 Also let me know which project(s) you're interested in. 
@@ -10,6 +10,9 @@ Check Discord for the latest TO DO details.
 
 Here's our weekly meetup link:
 https://model.earth/io/coders
+
+Fork the repo above to your Github account:
+[githubPath]
 
 Email loren@dreamstudio.com to log your progress.
 Please send a weekly PR or colab update to remain active.

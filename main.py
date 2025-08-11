@@ -48,6 +48,33 @@ def webhook():
     full_name = ''
     todays_date = datetime.datetime.now().strftime("%B %-d, %Y")
 
+    # Process name data upfront to ensure full_name is available
+    if '0' in response:
+        first_name, full_name = to_camel_case(response['0']['answer'][0])
+    
+    # Process GitHub data upfront to extract account name and build full path
+    github_account = ''
+    github_path = ''
+    if '12' in response:
+        github_value = response['12']['answer'][0]
+        # Extract account name from various GitHub URL formats
+        if github_value:
+            # Remove protocol and domain if present
+            if github_value.startswith('https://github.com/'):
+                github_account = github_value.replace('https://github.com/', '').split('/')[0]
+            elif github_value.startswith('http://github.com/'):
+                github_account = github_value.replace('http://github.com/', '').split('/')[0]
+            elif github_value.startswith('github.com/'):
+                github_account = github_value.replace('github.com/', '').split('/')[0]
+            elif github_value.startswith('/'):
+                github_account = github_value.lstrip('/').split('/')[0]
+            else:
+                # Assume it's just the account name
+                github_account = github_value.split('/')[0]
+            
+            # Build full GitHub path
+            github_path = f"https://github.com/{github_account}"
+    
     # replace placeholders in paragraphs
     def replace_in_paragraph(paragraph):
         has_changes = False
@@ -60,7 +87,6 @@ def webhook():
                 elif key in response:
                     to_replace = response[key]['answer'][0]
                     if placeholder == '#name#':
-                        first_name, full_name = to_camel_case(response['0']['answer'][0])
                         to_replace = ' '.join(full_name)
                 
                 # Replace placeholder while preserving formatting
@@ -96,16 +122,17 @@ def webhook():
     doc.save(doc_path)
 
     try:
-        send_email(file_name, doc_path, first_name, response['13']['answer'][0])
+        send_email(file_name, doc_path, first_name, response['13']['answer'][0], github_path)
     except Exception as e:
         return jsonify({'Error': str(e)}), 500
     else:
         return jsonify({'status': 'success', 'documentPath': doc_path}), 200
 
-def send_email(file_name: str, doc_path: str, first_name: str, email: str) -> None:
+def send_email(file_name: str, doc_path: str, first_name: str, email: str, github_path: str) -> None:
     with app.open_resource('outbound/new-member.txt') as tmp_body:
         msg_body = tmp_body.read().decode('utf-8')
         msg_body = msg_body.replace('[FirstName]', first_name)
+        msg_body = msg_body.replace('[githubPath]', github_path)
 
         msg = Message(
             subject="Welcome to our model.earth team!",
