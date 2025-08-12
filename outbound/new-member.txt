@@ -11,7 +11,10 @@ Check Discord for the latest TO DO details.
 Here's our weekly meetup link:
 https://model.earth/io/coders
 
-Fork the repo above to your Github account:
+Here's our webroot repo setup steps:
+https://model.earth/webroot
+
+Fork the webroot repo to your Github account and install locally:
 [githubPath]
 
 Email loren@dreamstudio.com to log your progress.
