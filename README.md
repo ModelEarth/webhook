@@ -53,7 +53,10 @@ If you receive the error `No module named 'imp'` you'll need to replace the olde
 3. In the terminal, run `gcloud auth application-default login` to authenticate Google CLI access.
 4. Run `gcloud config set project [PROJECT_ID]`.
 5. Grant Secret Manager Access to App Engine Service Account.  
+You may need to run `gcloud auth login`
+
 Checkout this [guide](https://cloud.google.com/secret-manager/docs/access-control). This is used to access the SMTP password stored in Google Cloud Secret Manager.
+
 
 6. Run `gcloud init` and choose options:
 
